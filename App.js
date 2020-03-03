@@ -13,6 +13,7 @@ export default class App extends Component {
 				});
 			})
 			.catch((error) => {
+				// TODO FIXME
 				console.error(error);
 			});
 	}
