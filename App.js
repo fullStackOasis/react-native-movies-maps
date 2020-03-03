@@ -6,7 +6,6 @@ export default class App extends Component {
 		return fetch('https://www.fullstackoasis.com/rnb/movies.php')
 			.then((response) => response.json())
 			.then((responseJson) => {
-				console.warn(responseJson);
 				this.setState({
 					isLoading: false,
 					dataSource: responseJson.movies,
@@ -28,7 +27,10 @@ export default class App extends Component {
 					value={item.title} key={item.id} />);
 			}
 			return <View>
-				<Picker>
+				<Picker selectedValue={this.state.movie}
+					onValueChange={(itemValue, itemIndex) =>
+						this.setState({ movie: itemValue })
+					}>
 				{items}
 				</Picker>
 			</View>;
