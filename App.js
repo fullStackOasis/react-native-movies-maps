@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
+import { Picker, View } from 'react-native';
 
 export default class App extends Component {
 	componentDidMount() {
 		return fetch('https://www.fullstackoasis.com/rnb/movies.php')
 			.then((response) => response.json())
 			.then((responseJson) => {
-				console.log(responseJson);
+				console.warn(responseJson);
 				this.setState({
 					isLoading: false,
 					dataSource: responseJson.movies,
@@ -18,6 +19,9 @@ export default class App extends Component {
 	}
 
 	render() {
-		return null;
+		return <View>
+			<Picker>
+			</Picker>
+		</View>;
 	}
 }
