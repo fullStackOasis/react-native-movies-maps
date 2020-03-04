@@ -48,7 +48,8 @@ export default class App extends Component {
 					}>
 				{items}
 				</Picker>
-				<Button onPress="handleClick" title="Find This Movie Near Me"></Button>
+				<Button onPress={this.handleClick}
+					title="Find This Movie Near Me"></Button>
 			</View>;
 		} else {
 			return (<View style={
