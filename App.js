@@ -46,7 +46,13 @@ export default class App extends Component {
 				</Picker>
 			</View>;
 		} else {
-			return (<View>
+			return (<View style={
+				[ { flex: 1, justifyContent: 'center' },
+				{ flexDirection: 'row',
+					justifyContent: 'space-around',
+					padding: 10 }
+				]
+			}>
 				<ActivityIndicator size="large" color="#0000ff" />
 			</View>);
 		}
