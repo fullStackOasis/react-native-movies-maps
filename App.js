@@ -45,11 +45,11 @@ export default class App extends Component {
 		}
 	}
 	handleClick() {
-		console.log(this);
 		return fetch('https://www.fullstackoasis.com/rnb/theaters.php')
 			.then((response) => response.json())
 			.then((responseJson) => {
 				// TODO FIXME handle timeout / delay
+				console.log(responseJson); // DEBUGGING
 				this.handleNearbyTheatersResponse(responseJson);
 			})
 			.catch((error) => {
