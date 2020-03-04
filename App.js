@@ -6,18 +6,19 @@ export default class App extends Component {
 		return fetch('https://www.fullstackoasis.com/rnb/movies.php')
 			.then((response) => response.json())
 			.then((responseJson) => {
-				this.setState({
-					isLoading: false,
-					dataSource: responseJson.movies,
-				}, function () {
-				});
+				this.setMovieState(responseJson.movies);
 			})
 			.catch((error) => {
 				// TODO FIXME
 				console.error(error);
 			});
 	}
-
+	setMovieState(movies) {
+		this.setState({
+			isLoading: false,
+			dataSource: movies,
+		});
+	}
 	render() {
 		if (this.state && !this.state.isLoading) {
 			let items = [];
