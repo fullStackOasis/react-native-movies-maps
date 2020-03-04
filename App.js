@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Picker, View, ActivityIndicator } from 'react-native';
+import { Picker, View, ActivityIndicator, Button }
+	from 'react-native';
 
 export default class App extends Component {
 	componentDidMount() {
@@ -28,6 +29,9 @@ export default class App extends Component {
 			this.setMovieState(movies);
 		}
 	}
+	handleClick() {
+		console.log("Handled");
+	}
 	render() {
 		if (this.state && !this.state.isLoading) {
 			let items = [];
@@ -44,6 +48,7 @@ export default class App extends Component {
 					}>
 				{items}
 				</Picker>
+				<Button onPress="handleClick" title="Find This Movie Near Me"></Button>
 			</View>;
 		} else {
 			return (<View style={
