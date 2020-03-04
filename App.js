@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Picker, View } from 'react-native';
+import { Picker, View, Text } from 'react-native';
 
 export default class App extends Component {
 	componentDidMount() {
@@ -46,7 +46,7 @@ export default class App extends Component {
 				</Picker>
 			</View>;
 		} else {
-			return (<View></View>);
+			return (<View><Text>waiting...</Text></View>);
 		}
 	}
 }
