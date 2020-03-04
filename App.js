@@ -73,7 +73,7 @@ export default class App extends Component {
 					}>
 				{items}
 				</Picker>
-				<Button onPress={this.handleClick}
+				<Button onPress={this.handleClick.bind(this)}
 					title="Find This Movie Near Me"></Button>
 			</View>;
 		} else {
