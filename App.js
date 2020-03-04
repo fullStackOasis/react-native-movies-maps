@@ -6,7 +6,7 @@ export default class App extends Component {
 		return fetch('https://www.fullstackoasis.com/rnb/movies.php')
 			.then((response) => response.json())
 			.then((responseJson) => {
-				this.setMovieState(responseJson.movies);
+				this.handleMoviesResponse(responseJson.movies, 5000);
 			})
 			.catch((error) => {
 				// TODO FIXME
@@ -18,6 +18,15 @@ export default class App extends Component {
 			isLoading: false,
 			dataSource: movies,
 		});
+	}
+	handleMoviesResponse(movies, delay) {
+		if (delay && delay > 0) {
+			const timer = setTimeout(function () {
+				this.setMovieState(movies);
+			}.bind(this), delay);
+		} else {
+			this.setMovieState(movies);
+		}
 	}
 	render() {
 		if (this.state && !this.state.isLoading) {
