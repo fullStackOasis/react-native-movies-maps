@@ -6,7 +6,7 @@ export default class App extends Component {
 		return fetch('https://www.fullstackoasis.com/rnb/movies.php')
 			.then((response) => response.json())
 			.then((responseJson) => {
-				this.handleMoviesResponse(responseJson.movies, 5000);
+				this.handleMoviesResponse(responseJson.movies);
 			})
 			.catch((error) => {
 				// TODO FIXME
