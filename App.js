@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Picker, View, Text } from 'react-native';
+import { Picker, View, ActivityIndicator } from 'react-native';
 
 export default class App extends Component {
 	componentDidMount() {
@@ -46,7 +46,9 @@ export default class App extends Component {
 				</Picker>
 			</View>;
 		} else {
-			return (<View><Text>waiting...</Text></View>);
+			return (<View>
+				<ActivityIndicator size="large" color="#0000ff" />
+			</View>);
 		}
 	}
 }
