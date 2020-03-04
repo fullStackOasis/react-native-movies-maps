@@ -29,8 +29,32 @@ export default class App extends Component {
 			this.setMovieState(movies);
 		}
 	}
+	setNearbyTheatersState(theaters) {
+		this.setState({
+			isLoading: false,
+			nearbyTheaters: theaters,
+		});
+	}
+	handleNearbyTheatersResponse(theaters, delay) {
+		if (delay && delay > 0) {
+			const timer = setTimeout(function () {
+				this.setNearbyTheatersState(theaters);
+			}.bind(this), delay);
+		} else {
+			this.setNearbyTheatersState(theaters);
+		}
+	}
 	handleClick() {
-		console.log("Handled");
+		return fetch('https://www.fullstackoasis.com/rnb/theaters.php')
+			.then((response) => response.json())
+			.then((responseJson) => {
+				// TODO FIXME handle timeout / delay
+				this.handleNearbyTheatersResponse(responseJson);
+			})
+			.catch((error) => {
+				// TODO FIXME replace the red screen with something informative.
+				console.error(error);
+			});
 	}
 	render() {
 		if (this.state && !this.state.isLoading) {
