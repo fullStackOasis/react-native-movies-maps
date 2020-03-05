@@ -58,7 +58,17 @@ export default class MoviesScreen extends Component {
 	}
 	handleShowTheaterClick() {
 		const { navigate } = this.props.navigation;
-		navigate('Maps', {});
+		var index = 0; // set default if nothing is picked
+		if (this.state.theaterIndex) {
+			index = this.state.theaterIndex;
+		}
+		let selectedTheater = this.state.nearbyTheaters[index];
+		navigate('Maps', {
+			latLng: {
+				latitude: selectedTheater.lat,
+				longitude: selectedTheater.lng
+			}
+		});
 	}
 	render() {
 		if (this.state && !this.state.isLoading) {

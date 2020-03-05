@@ -3,6 +3,9 @@ import { View, Text } from 'react-native';
 import MapView from 'react-native-maps';
 export default class MapsScreen extends Component {
 	render() {
+		const { navigation } = this.props;
+		// TODO FIXME. If 'NO-LATLNG' then there will be an error.
+		let latLng = navigation.getParam('latLng', 'NO-LATLNG');
 		return (<View style={
 			[{ flex: 1, justifyContent: 'center' },
 			{
@@ -13,10 +16,10 @@ export default class MapsScreen extends Component {
 		}>
 			<MapView style={[{ flex: 1 }]}
 				initialRegion={{
-					latitude: 37.78825,
-					longitude: -122.4324,
+					latitude: latLng.latitude, // parameter passed from MoviesScreen
+					longitude: latLng.longitude, // parameter passed from MoviesScreen
 					latitudeDelta: 0.0922,
-					longitudeDelta: 0.0421,
+					longitudeDelta: 0.0421
 				}}
 			/>
 		</View>);
