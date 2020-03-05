@@ -49,7 +49,6 @@ export default class App extends Component {
 			.then((response) => response.json())
 			.then((responseJson) => {
 				// TODO FIXME handle timeout / delay
-				console.log(responseJson); // DEBUGGING
 				this.handleNearbyTheatersResponse(responseJson);
 			})
 			.catch((error) => {
@@ -66,15 +65,26 @@ export default class App extends Component {
 				items.push(<Picker.Item label={item.title}
 					value={item.title} key={item.id} />);
 			}
+			var theatersPicker = null;
+			if (this.state.nearbyTheaters) {
+				let theaters = this.state.nearbyTheaters.map(
+					function (t, i) {
+						return <Picker.Item label={t.name}
+							value={t.name} key={i} />;
+					}
+				);
+				theatersPicker = <Picker>{theaters}</Picker>
+			}
 			return <View>
 				<Picker selectedValue={this.state.movie}
 					onValueChange={(itemValue, itemIndex) =>
 						this.setState({ movie: itemValue })
 					}>
-				{items}
+					{items}
 				</Picker>
 				<Button onPress={this.handleClick.bind(this)}
 					title="Find This Movie Near Me"></Button>
+				{theatersPicker}
 			</View>;
 		} else {
 			return (<View style={
