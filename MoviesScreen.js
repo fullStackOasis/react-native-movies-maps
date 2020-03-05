@@ -80,7 +80,10 @@ export default class MoviesScreen extends Component {
 				);
 				theatersPicker = <Picker selectedValue={this.state.theater}
 					onValueChange={(itemValue, itemIndex) =>
-						this.setState({ theater: itemValue })
+						this.setState({
+							theater: itemValue,
+							theaterIndex: itemIndex
+						})
 					}>
 					{theaters}
 				</Picker>;
