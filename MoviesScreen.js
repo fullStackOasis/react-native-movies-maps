@@ -67,7 +67,10 @@ export default class MoviesScreen extends Component {
 			latLng: {
 				latitude: selectedTheater.lat,
 				longitude: selectedTheater.lng
-			}
+			},
+			name: selectedTheater.name,
+			address: selectedTheater.address1,
+			phone: selectedTheater.phone
 		});
 	}
 	render() {
