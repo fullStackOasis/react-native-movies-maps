@@ -6,6 +6,8 @@ export default class MapsScreen extends Component {
 		const { navigation } = this.props;
 		// TODO FIXME. If 'NO-LATLNG' then there will be an error.
 		let latLng = navigation.getParam('latLng', 'NO-LATLNG');
+		// latLng param is passed from MoviesScreen and used to
+		// set initialRegion on MapView below.
 		return (<View style={
 			[{ flex: 1, justifyContent: 'center' },
 			{
@@ -16,8 +18,8 @@ export default class MapsScreen extends Component {
 		}>
 			<MapView style={[{ flex: 1 }]}
 				initialRegion={{
-					latitude: latLng.latitude, // parameter passed from MoviesScreen
-					longitude: latLng.longitude, // parameter passed from MoviesScreen
+					latitude: latLng.latitude,
+					longitude: latLng.longitude,
 					latitudeDelta: 0.0922,
 					longitudeDelta: 0.0421
 				}}
