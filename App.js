@@ -56,6 +56,8 @@ export default class App extends Component {
 				console.error(error);
 			});
 	}
+	handleShowTheaterClick() {
+	}
 	render() {
 		if (this.state && !this.state.isLoading) {
 			let items = [];
@@ -66,6 +68,7 @@ export default class App extends Component {
 					value={item.title} key={item.id} />);
 			}
 			var theatersPicker = null;
+			var goButton = null;
 			if (this.state.nearbyTheaters) {
 				let theaters = this.state.nearbyTheaters.map(
 					function (t, i) {
@@ -79,6 +82,9 @@ export default class App extends Component {
 					}>
 					{theaters}
 				</Picker>;
+				goButton = <Button title="Go">
+					onPress={this.handleShowTheaterClick.bind(this)}
+				</Button>;
 			}
 			return <View>
 				<Picker selectedValue={this.state.movie}
@@ -90,6 +96,7 @@ export default class App extends Component {
 				<Button onPress={this.handleClick.bind(this)}
 					title="Find This Movie Near Me"></Button>
 				{theatersPicker}
+				{goButton}
 			</View>;
 		} else {
 			return (<View style={
