@@ -73,7 +73,12 @@ export default class App extends Component {
 							value={t.name} key={i} />;
 					}
 				);
-				theatersPicker = <Picker>{theaters}</Picker>
+				theatersPicker = <Picker selectedValue={this.state.theater}
+					onValueChange={(itemValue, itemIndex) =>
+						this.setState({ theater: itemValue })
+					}>
+					{theaters}
+				</Picker>;
 			}
 			return <View>
 				<Picker selectedValue={this.state.movie}
