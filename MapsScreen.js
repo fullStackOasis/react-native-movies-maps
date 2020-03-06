@@ -1,7 +1,22 @@
 import React, { Component } from 'react';
-import { View } from 'react-native';
-import MapView, { Marker } from 'react-native-maps';
+import { View, Linking } from 'react-native';
+import MapView, { Marker, Callout } from 'react-native-maps';
+// https://developers.google.com/maps/documentation/urls/guide
+const URL = "https://www.google.com/maps/dir/?api=1&destination=";
 export default class MapsScreen extends Component {
+	openGoogleMaps() {
+		const { navigation } = this.props;
+		// TODO FIXME. If 'NO-LATLNG' then there will be an error.
+		let latLng = navigation.getParam('latLng', 'NO-LATLNG');
+		let url = URL + latLng.latitude + "," + latLng.longitude;
+		Linking.canOpenURL(url).then(function (successMessage) {
+			Linking.openURL(url).catch((err) => {
+				// do nothing if openURL fails
+			});
+		}).catch(function (reason) {
+			// do nothing if cannot open url
+		});
+	}
 	render() {
 		const { navigation } = this.props;
 		// TODO FIXME. If 'NO-LATLNG' then there will be an error.
@@ -30,6 +45,10 @@ export default class MapsScreen extends Component {
 			}}>
 				<Marker key={name} coordinate={latLng}
 					title={name} description={description}>
+					<Callout alphaHitTest tooltip
+						onPress = {this.openGoogleMaps.bind(this)}
+					>
+					</Callout>
 				</Marker>
 			</MapView>
 		</View>);
