@@ -4,7 +4,7 @@ import { Picker, View, ActivityIndicator, Button }
 
 export default class MoviesScreen extends Component {
 	componentDidMount() {
-		return fetch('https://www.fullstackoasis.com/rnb/movies.php')
+		fetch('https://www.fullstackoasis.com/rnb/movies.php')
 			.then((response) => response.json())
 			.then((responseJson) => {
 				this.handleMoviesResponse(responseJson.movies);
@@ -45,7 +45,7 @@ export default class MoviesScreen extends Component {
 		}
 	}
 	handleClick() {
-		return fetch('https://www.fullstackoasis.com/rnb/theaters.php')
+		fetch('https://www.fullstackoasis.com/rnb/theaters.php')
 			.then((response) => response.json())
 			.then((responseJson) => {
 				// TODO FIXME handle timeout / delay
